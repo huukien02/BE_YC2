@@ -23,7 +23,11 @@ const createComment = async (req: Request, res: Response) => {
       blogId, // Khóa ngoại để liên kết với Blog
     });
 
-    return res.status(201).json(comment); // Trả về bình luận mới đã tạo
+    return res.status(201).json({
+      status: true,
+      message: "Bình luận thành công",
+      comment,
+    }); // Trả về bình luận mới đã tạo
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: "Internal Server Error" });

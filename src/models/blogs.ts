@@ -6,7 +6,7 @@ class Blog extends Model {
   public id!: number;
   public title!: string;
   public content!: string;
-  public imageUrl?: string; // Thêm trường để lưu URL ảnh
+  public imageUrl?: string | null;
   public readonly createdAt!: Date;
   public readonly updatedAt!: Date;
 }

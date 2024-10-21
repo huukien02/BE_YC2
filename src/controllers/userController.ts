@@ -101,12 +101,15 @@ export const uploadAvatar = async (req: Request, res: Response) => {
     await user.save(); // Lưu lại thông tin người dùng
 
     return res.status(200).json({
+      status: true,
       message: "Cập nhật ảnh thành công",
       avatar,
     });
   } catch (error) {
     console.error(error);
-    return res.status(500).json({ message: "Đã xảy ra lỗi khi cập nhật ảnh" });
+    return res
+      .status(500)
+      .json({ status: false, message: "Đã xảy ra lỗi khi cập nhật ảnh" });
   }
 };
 
@@ -134,9 +137,13 @@ export const updateUser = async (req: Request, res: Response) => {
     // Save the updated user to the database
     await user.save();
 
-    return res.status(200).json({ message: "User updated successfully", user });
+    return res
+      .status(200)
+      .json({ status: true, message: "User updated successfully", user });
   } catch (error) {
-    return res.status(500).json({ message: "Failed to update user", error });
+    return res
+      .status(500)
+      .json({ status: false, message: "Failed to update user", error });
   }
 };
 
